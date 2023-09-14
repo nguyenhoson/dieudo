@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Phân việc</title>
+</head>
+<body>
+    <h1>Chọn Luật Phân Việc:</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <select name="rule">
+            <option value="1">EDD</option>
+            <option value="2">MS</option>
+            <option value="3">SPT</option>
+            <option value="4">WSPT</option>
+            <option value="5">WI</option>
+            <option value="6">LPT</option>
+        </select>
+        <input type="file" name="excel_file" accept=".xlsx">
+        <input type="submit" value="Chọn">
+    </form>
+
+    {% if error_message %}
+    <p style="color: red;">{{ error_message }}</p>
+    {% endif %}
+
+    {% if result_df %}
+    <h2>Kết quả:</h2>
+    {{ result_df | safe }}
+    
+    <h2>Biểu đồ Gantt:</h2>
+    <img src="data:image/png;base64,{{ gantt_chart }}" alt="Biểu đồ Gantt">
+    {% endif %}
+</body>
+</html>
